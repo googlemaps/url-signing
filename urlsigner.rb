@@ -20,9 +20,13 @@ module GoogleUrlSigner
 
     def generate_signature(path, key)
       raw_key = url_safe_base64_decode(key)
-      digest = OpenSSL::Digest.new('sha1')
-      raw_signature = OpenSSL::HMAC.digest(digest, raw_key, path)
+      raw_signature = encrypt(raw_key, path)
       url_safe_base64_encode(raw_signature)
+    end
+
+    def encrypt(key, data)
+      digest = OpenSSL::Digest.new('sha1')
+      OpenSSL::HMAC.digest(digest, key, data)
     end
 
     def url_safe_base64_decode(base64_string)
