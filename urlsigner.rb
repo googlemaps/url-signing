@@ -1,45 +1,47 @@
 #!/usr/bin/ruby
 # Test Script for Google Maps API signatures
 
-require 'rubygems'
 require 'base64'
+require 'openssl'
 require 'uri'
-# hmac, and hmac-sha1, are from # gem install ruby-hmac
-require 'hmac'
-require 'hmac-sha1'
 
-def urlSafeBase64Decode(base64String)
-  return Base64.decode64(base64String.tr('-_','+/'))
-end
+module GoogleUrlSigner
+  class << self
+    def sign(url, key)
+      parsed_url = URI.parse(url)
+      full_path = "#{parsed_url.path}?#{parsed_url.query}"
 
-def urlSafeBase64Encode(raw)
-  return Base64.encode64(raw).tr('+/','-_')
-end
+      signature = generate_signature(full_path, key)
 
+      "#{parsed_url.scheme}://#{parsed_url.host}#{full_path}&signature=#{signature}"
+    end
 
-def signURL(key, url)
-  parsedURL = URI.parse(url)
-  urlToSign = parsedURL.path + '?' + parsedURL.query
+    private
 
-  # Decode the private key
-  rawKey = urlSafeBase64Decode(key)
+    def generate_signature(path, key)
+      raw_key = url_safe_base64_decode(key)
+      raw_signature = encrypt(raw_key, path)
+      url_safe_base64_encode(raw_signature)
+    end
 
-  # create a signature using the private key and the URL
-  sha1 = HMAC::SHA1.new(rawKey)
-  sha1 << urlToSign
-  rawSignature = sha1.digest()
+    def encrypt(key, data)
+      digest = OpenSSL::Digest.new('sha1')
+      OpenSSL::HMAC.digest(digest, key, data)
+    end
 
-  # encode the signature into base64 for url use form.
-  signature =  urlSafeBase64Encode(rawSignature)
+    def url_safe_base64_decode(base64_string)
+      Base64.decode64(base64_string.tr('-_', '+/'))
+    end
 
-  # prepend the server and append the signature.
-  signedUrl = parsedURL.scheme+"://"+ parsedURL.host + urlToSign + "&signature=#{signature}"
-  return signedUrl
+    def url_safe_base64_encode(raw)
+      Base64.encode64(raw).tr('+/', '-_').strip
+    end
+  end
 end
 
 # URL to sign
-url = "http://maps.google.com/maps/api/geocode/json?address=New+York&sensor=false&client=clientID"
+url = 'http://maps.google.com/maps/api/geocode/json?address=New+York&sensor=false&client=clientID'
 # Private Key
-PRIVATE_KEY = "vNIXE0xscrmjlyV-12Nj_BvUPaw="
+PRIVATE_KEY = 'vNIXE0xscrmjlyV-12Nj_BvUPaw='
 
-print signURL(PRIVATE_KEY, url)
+puts GoogleUrlSigner.sign(url, PRIVATE_KEY)
