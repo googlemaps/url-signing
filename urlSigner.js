@@ -11,7 +11,7 @@ const url = require('url');
  * @return {string}
  */
 function removeWebSafe(safeEncodedString) {
-  return safeEncodedString.replace('-', '+').replace('_', '/');
+  return safeEncodedString.replace(/-/g, '+').replace(/_/g, '/');
 }
 
 /**
@@ -22,7 +22,7 @@ function removeWebSafe(safeEncodedString) {
  * @return {string}
  */
 function makeWebSafe(encodedString) {
-  return encodedString.replace('+', '-').replace('/', '_');
+  return encodedString.replace(/\+/g, '-').replace(/\//g, '_');
 }
 
 /**
