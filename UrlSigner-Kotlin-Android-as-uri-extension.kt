@@ -1,10 +1,9 @@
 import javax.crypto.Mac
 import javax.crypto.spec.SecretKeySpec
 
-val keyString = "YOUR_PRIVATE_KEY"
-
 fun Uri.staticMapsWithSignatureUrl(): String {
-    val resource = this.path + '?'.toString() + this.query
+    var keyString = "YOUR_PRIVATE_KEY"
+    val resource = this.path + '?' + this.query
     keyString = keyString.replace('-', '+')
     keyString = keyString.replace('_', '/')
     val key = android.util.Base64.decode(keyString, android.util.Base64.DEFAULT)
