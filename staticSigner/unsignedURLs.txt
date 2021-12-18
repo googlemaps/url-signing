@@ -1,0 +1,4 @@
+https://maps.googleapis.com/maps/api/staticmap?center=Royal+Greenwich+Observatory,London,England&zoom=14&size=640x640&scale=2&language=en-EN&key=AIzaSyAY4gcXw6gp_mlQ8qKisL5sE23LMC1MM9U
+https://maps.googleapis.com/maps/api/staticmap?center=Eiffel+Tower,Paris,France&zoom=14&size=640x640&scale=2&language=en-EN&key=AIzaSyAY4gcXw6gp_mlQ8qKisL5sE23LMC1MM9U
+https://maps.googleapis.com/maps/api/staticmap?center=Googleplex,Mountain+View,CA,USA&zoom=14&size=640x640&scale=2&language=en-EN&key=AIzaSyAY4gcXw6gp_mlQ8qKisL5sE23LMC1MM9U
+https://maps.googleapis.com/maps/api/staticmap?center=Space+Needle,Seattle,WA,USA&zoom=14&size=640x640&scale=2&language=en-EN&key=AIzaSyAY4gcXw6gp_mlQ8qKisL5sE23LMC1MM9U
