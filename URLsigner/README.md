@@ -1,11 +1,11 @@
-# staticSigner 
+# URLsigner
 ### a PowerShell module to add digital signatures
 ### to Google Static Maps and Static Street View URLs  
 ---
 ## Installation
-Copy the staticSigner folder containing the staticSigner.psm1 file to your PowerShell user module path
-* On Windows systems, copy the staticSigner folder to ```$HOME\Documents\PowerShell\Modules```
-* On non-Windows systems, copy staticSigner to ```$HOME/.local/share/powershell/Modules```
+Copy the URLsigner folder containing the staticSigner.psm1 file to your PowerShell user module path
+* On Windows systems, copy the URLsigner folder to ```$HOME\Documents\PowerShell\Modules```
+* On non-Windows systems, copy URLsigner to ```$HOME/.local/share/powershell/Modules```
 ---
 ## Set default URL Signing Secret (optional)
 To add a digital signature to a Google Static Maps or Static Street View URL,
@@ -24,21 +24,21 @@ or you can edit staticSigner.psm1 to include your URL Signing Secret as the defa
 2. Select the Maps Static API or Static Street View API from the list at the top marked "All Google Maps Platform APIs"
 3. Copy the 28-character Current Secret (including the "=" sign at the end)  
 ![URL Signing Secret in API project](./01-CurrentSecret.png)  
-4. Open the staticSigner/staticSigner.psm1 file in a code editor 
+4. Open the URLsigner/URLsigner.psm1 file in a code editor 
 5. Find the line starting with  
 ```$script:secretKey = ```  
 and replace the dummy signing secret with the one from your project
-6. Save the staticSigner.psm1 file
+6. Save the URLsigner.psm1 file
 ---  
 ## Importing the module and preparing to sign URLs
-After you've saved the ```staticSigner``` folder containing the ```staticSigner.psm1``` file to your PowerShell profile path, you can import the module from a PowerShell command line:  
-**```PS> Import-Module staticSigner```**  
+After you've saved the ```URLsigner``` folder containing the ```URLsigner.psm1``` file to your PowerShell profile path, you can import the module from a PowerShell command line:  
+**```PS> Import-Module URLsigner```**  
 ![Import-Module command](./02-Import-Module.png)  
 Before signing a Static Maps or Static Street View URL, you need to run the ```Set-SecretKey``` command:  
 **```PS> Set-SecretKey "jdW0fdx88bGYVwTCxIjWSpBJMoo="```**  
 ![Set-SecretKey command](./03-Set-SecretKey.png)  
 (this secret key has already been regenerated -- get your actual URL Signing Secret from the [Maps-APIs Credentials](https://console.cloud.google.com/google/maps-apis/credentials) page of your project)  
-If you've already edited staticSigner.psm1 to replace the dummy default key with your actual URL Signing Secret, you can use:  
+If you've already edited URLsigner.psm1 to replace the dummy default key with your actual URL Signing Secret, you can use:  
 **```PS> Set-SecretKey```**  
 to use the default you've set.  
 
@@ -54,7 +54,7 @@ After you've imported the module and run Set-SecretKey, you can use the ```signS
 ```https://maps.googleapis.com/maps/api/staticmap?center=Royal+Greenwich+Observatory,London,England&zoom=14&size=640x640&scale=2&language=en-EN&key=AIzaSyAY4gcXw6gp_mlQ8qKisL5sE23LMC1MM9U&signature=omVx1LZnFWT2kmnBXdwaUiDMNxE=```  
 ![run the signStaticUrl function on $url1](./05-signStaticUrl.png)  
 
-The staticSigner module creates two aliases, ```Protect-StaticUrl``` and ```Protect-Url```, for the ```signStaticUrl``` function:  
+The URLsignermodule creates two aliases, ```Protect-StaticUrl``` and ```Protect-Url```, for the ```signStaticUrl``` function:  
 
 **```PS> Protect-StaticUrl $url_1```**  
 ```https://maps.googleapis.com/maps/api/staticmap?center=Royal+Greenwich+Observatory,London,England&zoom=14&size=640x640&scale=2&language=en-EN&key=AIzaSyAY4gcXw6gp_mlQ8qKisL5sE23LMC1MM9U&signature=omVx1LZnFWT2kmnBXdwaUiDMNxE=```  
@@ -74,7 +74,7 @@ You can see that both ```signStaticUrl``` and ```Protect-StaticUrl``` generate t
 
 If the URL was already signed using a different URL Signing Secret, the ```signStaticUrl``` function (and its aliases) will remove the old signature before creating a new signature and adding it to the URL:  
 **```PS> Set-SecretKey```**  
-```$secretKey set to default value (edit staticSigner.psm1 to change default value)```  
+```$secretKey set to default value (edit URLsigner.psm1 to change default value)```  
 **```PS> $signed_url = Protect-StaticUrl $url_2```**  
 **```PS> $signed_url```**    
 ```https://maps.googleapis.com/maps/api/staticmap?center=Eiffel+Tower,Paris,France&zoom=14&size=640x640&scale=2&language=en-EN&key=AIzaSyAY4gcXw6gp_mlQ8qKisL5sE23LMC1MM9U&signature=JR7YxKgwk7gQjqhYWu3NFhydsW8=```  
