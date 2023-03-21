@@ -121,11 +121,11 @@ https://console.cloud.google.com/google/maps-apis/credentials
     } else {
         # you can edit the following line to set the URL Signing Secret to the one from your project
         # this is the default (dummy) secretKey line:
-        # $script:secretKey = "aBcDeFgHiJkLmNoPqRsTuVwXyZ-="
+        # $script:secretKey = ""
         #
-        # here is the correct Secret Key from this project (ID esp-0001) as of November 9, 2021: srY1TIV5taqb0NcpenkJVZOKsjo=
+        # this was the correct Secret Key from this project (ID esp-0001) as of March 21, 2023: srY1TIV5taqb0NcpenkJVZOKsjo=
         # 
-        $script:secretKey = "srY1TIV5taqb0NcpenkJVZOKsjo=" 
+        $script:secretKey = "aBcDeFgHiJkLmNoPqRsTuVwXyZ-=" 
         '$secretKey set to default value (edit URLsigner.psm1 to change default value)'
     }
 }
