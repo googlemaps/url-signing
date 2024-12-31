@@ -1,5 +1,6 @@
-![GitHub contributors](https://img.shields.io/github/contributors/googlemaps/url-signing?color=green)
-[![GitHub License](https://img.shields.io/github/license/googlemaps/url-signing?color=blue)][license]
+![Contributors](https://img.shields.io/github/contributors/googlemaps/url-signing?color=green)
+[![License](https://img.shields.io/github/license/googlemaps/url-signing?color=blue)][license]
+[![StackOverflow](https://img.shields.io/stackexchange/stackoverflow/t/google-maps?color=orange&label=google-maps&logo=stackoverflow)](https://stackoverflow.com/questions/tagged/google-maps)
 [![Discord](https://img.shields.io/discord/676948200904589322?color=6A7EC2&logo=discord&logoColor=ffffff)][Discord server]
 
 # URL-signing sample apps
@@ -10,10 +11,10 @@ Samples in various languages that demonstrate how to [sign URLs](https://develop
 
 ## Requirements
 
-* [Sign up with Google Maps Platform]
-* A Google Maps Platform [project] with the desired **Maps APIs** enabled
-* An [API key] associated with the project above
-* A [URL signing secret](https://developers.google.com/maps/documentation/maps-static/digital-signature#get-secret) from your project's [credentials console page](https://console.cloud.google.com/project/_/google/maps-apis/credentials)
+- [Sign up with Google Maps Platform]
+- A Google Maps Platform [project] with the desired **Maps APIs** enabled
+- An [API key] associated with the project above
+- A [URL signing secret](https://developers.google.com/maps/documentation/maps-static/digital-signature#get-secret) from your project's [credentials console page](https://console.cloud.google.com/project/_/google/maps-apis/credentials)
 
 ## Contributing
 
@@ -39,7 +40,7 @@ You can also discuss this library on our [Discord server].
 [maps-sdk]: https://developers.google.com/maps/documentation/javascript
 [documentation]: https://googlemaps.github.io/url-signing
 
-[code of conduct]: CODE_OF_CONDUCT.md
+[code of conduct]: ?tab=coc-ov-file#readme
 [contributing guide]: CONTRIBUTING.md
 [Deprecation Policy]: https://cloud.google.com/maps-platform/terms
 [developer community channels]: https://developers.google.com/maps/developer-community
